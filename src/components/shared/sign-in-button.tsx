@@ -4,7 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { useTransition } from "react";
 import { Button } from "../ui/button";
 
-export function SignInButton() {
+export function SignInButton({ btnText }: { btnText?: string }) {
   const [isPending, startTransition] = useTransition();
 
   const handleLogin = () => {
@@ -21,7 +21,7 @@ export function SignInButton() {
   };
   return (
     <Button onClick={handleLogin} disabled={isPending}>
-      {isPending ? "Signing in..." : "Sign in with Authentik"}
+      {isPending ? "Signing in..." : btnText || "Sign in"}
     </Button>
   );
 }

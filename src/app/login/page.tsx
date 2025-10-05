@@ -9,8 +9,8 @@ import {
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-5">
-      <Card className="min-w-2xl">
+    <main className="flex-1 flex flex-col justify-center items-center px-6">
+      <Card className="w-full lg:w-1/2">
         <CardHeader>
           <CardTitle>Healthcare Jobs</CardTitle>
           <CardDescription>

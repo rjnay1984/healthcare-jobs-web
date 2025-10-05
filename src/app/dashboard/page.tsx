@@ -1,6 +1,7 @@
-import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/get-current-user";
 import DashboardClient from "./dashboard-client";
+import { redirect } from "next/navigation";
+import { Container } from "@/components/ui/container";
 
 export default async function DashboardPage() {
   const { user, session } = await getCurrentUser();
@@ -9,9 +10,18 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
-  if (!user || !user.isSetupComplete) {
-    redirect("/onboarding");
+  if (!user) {
+    redirect("/login");
   }
 
-  return <DashboardClient user={user} session={session} />;
+  if (!user.isSetupComplete) {
+    redirect("/onboarding");
+  }
+  return (
+    <main className="py-10">
+      <Container>
+        <DashboardClient user={user} />
+      </Container>
+    </main>
+  );
 }
