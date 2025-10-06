@@ -1,10 +1,5 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <main>
-      App
-      <Link href="/login">Login</Link>
-    </main>
-  );
+  return redirect("/dashboard");
 }
