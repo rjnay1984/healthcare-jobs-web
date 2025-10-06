@@ -1,10 +1,8 @@
-import { SignOutButton } from "@/components/shared/sign-out-button";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
