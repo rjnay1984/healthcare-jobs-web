@@ -92,7 +92,7 @@ export default function SignInCard() {
                   },
                   onResponse: () => {
                     setLoading(false);
-                    router.push("/dashboard");
+                    router.push("/onboarding");
                     router.refresh();
                   },
                 }
