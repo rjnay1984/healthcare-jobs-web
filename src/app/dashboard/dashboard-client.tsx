@@ -7,12 +7,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Session } from "@/lib/auth";
 import { cn } from "@/lib/utils";
-import { User, UserType } from "@/types";
 import Link from "next/link";
 
 interface DashboardClientProps {
-  user: User;
+  user: Session["user"];
 }
 
 export default function DashboardClient({ user }: DashboardClientProps) {
@@ -22,18 +22,17 @@ export default function DashboardClient({ user }: DashboardClientProps) {
         <CardTitle>
           <h2 className="text-2xl">
             Welcome to your{" "}
-            {user.type === UserType.Candidate ? "Candidate" : "Employer"}{" "}
-            Dashboard
+            {user.type === "Candidate" ? "Candidate" : "Recruiter"} Dashboard
           </h2>
         </CardTitle>
         <CardDescription>
-          {user.type === UserType.Candidate
+          {user.type === "Candidate"
             ? "Browse jobs and apply to positions that match your skills."
             : "Post jobs and find qualified healthcare technology professionals."}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {user.type === UserType.Candidate ? (
+        {user.type === "Candidate" ? (
           <div className="grid gap-4 md:grid-cols-2">
             <Link
               href="/jobs"
@@ -107,7 +106,7 @@ export default function DashboardClient({ user }: DashboardClientProps) {
 
 export function DashboardClientLoading() {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>
           <h2 className="text-2xl">

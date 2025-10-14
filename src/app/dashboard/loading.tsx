@@ -1,9 +1,10 @@
+import { Container } from "@/components/ui/container";
 import { DashboardClientLoading } from "./dashboard-client";
 
 export default function DashboardLoading() {
   return (
-    <div className="py-10 px-6">
+    <Container className="py-10 mx-0">
       <DashboardClientLoading />
-    </div>
+    </Container>
   );
 }

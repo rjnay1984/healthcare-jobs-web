@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header, HeaderLoading } from "@/components/shared/header";
 import { Suspense } from "react";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
             <Header />
           </Suspense>
           {children}
+          <Toaster position="top-right" />
         </ThemeProvider>
       </body>
     </html>

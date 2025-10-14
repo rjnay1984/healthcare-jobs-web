@@ -1,26 +1,22 @@
-import { getCurrentUser } from "@/lib/get-current-user";
-import DashboardClient from "./dashboard-client";
 import { redirect } from "next/navigation";
 import { Container } from "@/components/ui/container";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import DashboardClient from "./dashboard-client";
 
 export default async function DashboardPage() {
-  const { user, session } = await getCurrentUser();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   if (!session) {
-    redirect("/login");
+    redirect("/auth/sign-in");
   }
 
-  if (!user) {
-    redirect("/login");
-  }
-
-  if (!user.isSetupComplete) {
-    redirect("/onboarding");
-  }
   return (
     <main className="py-10">
       <Container>
-        <DashboardClient user={user} />
+        <DashboardClient user={session.user} />
       </Container>
     </main>
   );

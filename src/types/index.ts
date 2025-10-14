@@ -5,15 +5,6 @@ export enum UserType {
   Admin = 3,
 }
 
-export interface User {
-  id: string;
-  email: string;
-  type: UserType;
-  isActive: boolean;
-  isSetupComplete: boolean;
-  createdAt: string;
-}
-
 export interface UserSetupRequest {
   userType: UserType;
   firstName?: string;
@@ -153,17 +144,4 @@ export interface ApiError {
   error: string;
   message?: string;
   statusCode?: number;
-}
-
-// Better Auth profile type
-export interface AuthentikProfile {
-  sub: string;
-  email: string;
-  email_verified: boolean;
-  name: string;
-  given_name?: string;
-  preferred_username?: string;
-  nickname?: string;
-  picture?: string;
-  groups?: string[];
 }

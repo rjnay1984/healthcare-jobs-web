@@ -1,22 +1,24 @@
-import { getCurrentUser } from "@/lib/get-current-user";
 import { SignOutButton } from "./sign-out-button";
-import { SignInButton } from "./sign-in-button";
 import { Skeleton } from "../ui/skeleton";
 import { Container } from "../ui/container";
-import { buttonVariants } from "../ui/button";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import Link from "next/link";
 
 export async function Header() {
-  const { user } = await getCurrentUser();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   return (
     <HeaderShell>
-      {user ? (
+      {session?.user ? (
         <>
-          <span className="text-sm hidden sm:block">{user.email}</span>
+          <span className="text-sm hidden sm:block">{session.user.email}</span>
           <SignOutButton />
         </>
       ) : (
-        <SignInButton />
+        <Link href="/auth/sign-in">Sign In</Link>
       )}
     </HeaderShell>
   );

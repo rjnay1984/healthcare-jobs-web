@@ -1,9 +1,12 @@
-"use client";
-import { genericOAuthClient } from "better-auth/client/plugins";
-import { createAuthClient } from "better-auth/react"; // make sure to import from better-auth/react
+import { createAuthClient } from "better-auth/react";
+import { inferAdditionalFields } from "better-auth/client/plugins";
+import type { auth } from "./auth";
 
 export const authClient = createAuthClient({
-  plugins: [genericOAuthClient()],
+  baseURL: process.env.NEXT_PUBLIC_APP_URL,
+  plugins: [inferAdditionalFields<typeof auth>()],
 });
 
-export const { useSession, signIn, signOut } = authClient;
+export const { signIn, signOut, signUp, useSession } = authClient;
+
+export type Session = typeof authClient.$Infer.Session;
