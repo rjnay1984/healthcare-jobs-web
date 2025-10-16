@@ -1,8 +1,25 @@
 import { Pool } from "pg";
 import { betterAuth } from "better-auth";
+import { jwt, openAPI } from "better-auth/plugins";
 import { sendEmail } from "./email";
 
 export const auth = betterAuth({
+  plugins: [
+    jwt({
+      jwt: {
+        issuer: "http://localhost:3000",
+        audience: "http://localhost:5000",
+        expirationTime: "7d",
+      },
+      jwks: {
+        keyPairConfig: {
+          alg: "RS256",
+          modulusLength: 2048,
+        },
+      },
+    }),
+    openAPI(),
+  ],
   user: {
     additionalFields: {
       type: {

@@ -11,6 +11,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import OnboardingCandidateForm from "./onboarding-candidate-form";
+import { getAccessToken } from "@/lib/get-access.token";
 
 export default async function OnboardingPage() {
   const session = await auth.api.getSession({
@@ -20,6 +21,7 @@ export default async function OnboardingPage() {
   if (!session?.user) {
     redirect("/auth/sign-in");
   }
+
   return (
     <main className="py-10">
       <Container>

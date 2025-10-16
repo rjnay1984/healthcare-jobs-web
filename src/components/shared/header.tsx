@@ -14,7 +14,7 @@ export async function Header() {
     <HeaderShell>
       {session?.user ? (
         <>
-          <span className="text-sm hidden sm:block">{session.user.email}</span>
+          <span className="text-sm hidden sm:block">{session.user.name}</span>
           <SignOutButton />
         </>
       ) : (

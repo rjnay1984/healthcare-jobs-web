@@ -24,6 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.email("Please enter a valid email address"),
@@ -52,8 +53,9 @@ export default function SignInCard() {
         password: values.password,
       },
       {
-        onResponse: () => {
-          router.push("/onboarding");
+        onSuccess: () => {
+          toast.success("Successfully signed in! Redirecting...");
+          router.push("/me");
           router.refresh();
         },
       }
